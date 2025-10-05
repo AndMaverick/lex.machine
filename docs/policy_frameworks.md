@@ -70,4 +70,5 @@ This document evolves as global regulations do. Each addition strengthens the br
 
 **Maintainer:** **Maverick**  
 **Project:** *lex.machine*  
+
 > “Where compliance meets compilation.”
