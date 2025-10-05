@@ -44,7 +44,7 @@ You don’t “talk about responsible AI” here — you **ship it**.
 ---
 
 ## 🧰 Repository Structure
-
+```
 lex.machine/
 │
 ├── terraform/
@@ -74,7 +74,7 @@ lex.machine/
 └── README.md
 
 
----
+```
 
 ## 🏗️ Example: Bias Audit Workflow
 
