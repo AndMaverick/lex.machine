@@ -1,6 +1,6 @@
-# ⚖️ lex.machine
+<h1 align="center">⚖️ lex.machine</h1>
+<p align="center"><em>Infrastructure-as-Governance: Automated compliance for the age of accountability.</em></p>
 
-> **Infrastructure-as-Governance** — Automating AI compliance for the age of accountability.
 
 AI governance isn’t paperwork. It’s engineering discipline.  
 `lex.machine` defines the operational layer for Responsible AI — reproducible, auditable, and automated.
