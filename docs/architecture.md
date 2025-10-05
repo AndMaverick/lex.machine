@@ -95,6 +95,8 @@ fairlearn / aif360 → fairness metrics
 
 jq, bc (preinstalled on runners) → compliance scoring logic
 
+---
+
 🧠 Design Philosophy
 
 Transparency by Default: every run leaves an auditable trail.
@@ -104,6 +106,8 @@ Policy-as-Code: governance rules are executable artifacts.
 Compliance as CI/CD: every push = a governance checkpoint.
 
 Automation for Trust: reliability replaces self-reporting.
+
+---
 
 🗺️ Future Roadmap
 
@@ -115,7 +119,11 @@ Implement PR-level compliance comments.
 
 Generate compliance dashboards (Streamlit or Gradio).
 
+---
+
 Author: Maverick
 Project: lex.machine
 
 “Governance should compile.”
+
+---
