@@ -1,0 +1,6 @@
+# Core dependencies for lex.machine governance modules
+
+pandas>=2.0.0
+numpy>=1.25.0
+fairlearn>=0.10.0
+aif360>=0.6.0
