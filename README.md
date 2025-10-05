@@ -1,4 +1,4 @@
-<h1 align="center">⚖️ lex.machine</h1>
+<h1 align="center">⚖️ lex.machine</h1> ⚖️
 <p align="center"><em>Infrastructure-as-Governance: Automated compliance for the age of accountability.</em></p>
 
 
