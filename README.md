@@ -127,8 +127,7 @@ MIT — because compliance should be open-source.
 
 🗣️ Author
 
-Built by Maverick,
-for the people still wondering if he codes.
+Built by Maverick — designed, coded, shipped.
 
 “I don’t tweet opinions about governance.
 I deploy them.”
