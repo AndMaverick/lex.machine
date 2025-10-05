@@ -27,8 +27,24 @@ jobs:
         run: |
           python python/governance/bias_check.py
 
+      - name: 📊 Evaluate Compliance
+        run: |
+          echo "Evaluating bias compliance..."
+          bias_score=$(jq '.bias_score' bias_report.json)
+          echo "Detected bias score: $bias_score"
+
+          threshold=0.1
+          if (( $(echo "$bias_score > $threshold" | bc -l) )); then
+            echo "❌ Compliance failed — bias score ($bias_score) exceeds threshold ($threshold)"
+            exit 1
+          else
+            echo "✅ Compliance passed — bias score ($bias_score) within acceptable range"
+          fi
+
       - name: 📁 Upload Bias Report
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: bias-report
           path: bias_report.json
+
