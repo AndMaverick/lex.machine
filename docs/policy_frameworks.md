@@ -63,7 +63,7 @@ Safeguard individuals’ personal data and ensure AI systems maintain **lawfulne
 
 Policy Text → Control Mapping → Python Validator → CI/CD Enforcement → Audit Artifact
 
-``` 
+
 This document evolves as global regulations do. Each addition strengthens the bridge between **law** and **logic**.
 
 ---
