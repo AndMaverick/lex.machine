@@ -1,6 +1,15 @@
 <h1 align="center">⚖️ lex.machine</h1>
 <p align="center"><em>Infrastructure-as-Governance: Automated compliance for the age of accountability.</em></p>
 
+<p align="center">
+
+  <img src="https://img.shields.io/badge/Bias%20Audit-Automated-brightgreen?style=for-the-badge&logo=githubactions&logoColor=white" alt="Bias Audit Automated">
+  <img src="https://img.shields.io/badge/Compliance%20Gate-Active-blue?style=for-the-badge&logo=shield&logoColor=white" alt="Compliance Gate Active">
+  <img src="https://img.shields.io/badge/Policy%20Hooks-Live-purple?style=for-the-badge&logo=python&logoColor=white" alt="Policy Hooks Live">
+  <img src="https://img.shields.io/badge/lex.machine-Infrastructure--as--Governance-black?style=for-the-badge" alt="lex.machine badge">
+
+</p>
+
 
 AI governance isn’t paperwork. It’s engineering discipline.  
 `lex.machine` defines the operational layer for Responsible AI — reproducible, auditable, and automated.
