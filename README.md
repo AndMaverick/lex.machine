@@ -102,9 +102,12 @@ Result:
 📊 Bias report generated.
 📁 Report stored as an immutable artifact.
 
+🧮 Example: Compliance Scan via Terraform
+```
 terraform init
 terraform apply -var 'policy_framework=gdpr'
 
+```
 Creates audit logs, compliance markers, and traceable resource configurations aligned with policy templates.
 
 🧱 Design Principles
