@@ -121,9 +121,10 @@ Generate compliance dashboards (Streamlit or Gradio).
 
 ---
 
-Author: Maverick
-Project: lex.machine
+**Author:** **Maverick**
 
-“Governance should compile.”
+**Project:** *lex.machine*
+
+> “Governance should compile.”
 
 ---
