@@ -54,3 +54,9 @@ The scan is a readiness aid. It tells you which evidence is missing and which te
 The same fail-closed, evidence-first approach for running systems is in [mao-framework](https://github.com/AndMaverick/mao-framework). Residency checks live in [sovereign.map](https://github.com/AndMaverick/sovereign.map) and incident handling in [incident.log](https://github.com/AndMaverick/incident.log).
 
 MIT licensed. Built by [AndMaverick LLC](https://www.andmaverick.com).
+
+---
+
+**Related reading:** [Nobody Signs for the Agent](https://blog.andmaverick.com/nobody-signs-for-the-agent?utm_source=github&utm_medium=repo&utm_campaign=lex.machine)
+
+**If this is your problem.** If a system you run can fail in ways that matter, the controls belong in the architecture, not in the postmortem. I am happy to talk through yours. [Begin a conversation](https://calendly.com/andmaverick?utm_source=github&utm_medium=repo&utm_campaign=lex.machine).
