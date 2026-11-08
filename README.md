@@ -1,142 +1,43 @@
-<h1 align="center">⚖️ lex.machine</h1>
-<p align="center"><em>Infrastructure-as-Governance: Automated compliance for the age of accountability.</em></p>
+# lex.machine
 
-<p align="center">
+**Governance as engineering.** A working blueprint for turning AI regulation into checks that run in CI: measure, gate, and keep evidence on every push.
 
-  <img src="https://img.shields.io/badge/Bias%20Audit-Automated-brightgreen?style=for-the-badge&logo=githubactions&logoColor=white" alt="Bias Audit Automated">
-  <img src="https://img.shields.io/badge/Compliance%20Gate-Active-blue?style=for-the-badge&logo=shield&logoColor=white" alt="Compliance Gate Active">
-  <img src="https://img.shields.io/badge/Policy%20Hooks-Live-purple?style=for-the-badge&logo=python&logoColor=white" alt="Policy Hooks Live">
-  <img src="https://img.shields.io/badge/lex.machine-Infrastructure--as--Governance-black?style=for-the-badge" alt="lex.machine badge">
+AI governance fails when it lives in documents. lex.machine treats a control as code that can pass or fail, and maps each regulatory requirement to the check that enforces it.
 
-</p>
+## What works today
 
+| Piece | Status | Where |
+|---|---|---|
+| Bias check: positive-outcome rate gap between groups, written to a JSON report | Working demo on simulated predictions | `python/governance/bias_check.py` |
+| Governance matrix: EU AI Act, NIST AI RMF, and GDPR controls mapped to code | Documented | `docs/governance_matrix.md` |
+| Architecture and framework notes | Documented | `docs/architecture.md`, `docs/policy_frameworks.md` |
 
-AI governance isn’t paperwork. It’s engineering discipline.  
-`lex.machine` defines the operational layer for Responsible AI — reproducible, auditable, and automated.
-
----
-
-## 🧩 Overview
-
-The future of AI regulation isn’t waiting for anyone.  
-Every model, every dataset, every decision pipeline will need to prove that it’s **compliant, explainable, and bias-aware**.
-
-`lex.machine` is an open framework for automating those checks. It brings together:
-
-- **Terraform** → Compliance infrastructure as code.  
-- **GitHub Actions** → Automated workflows for bias scans and audit reports.  
-- **Python modules** → Governance logic, reporting engines, and risk evaluation tools.
-
-Think of it as **DevOps for AI Ethics** — a blueprint for building systems that regulators wish existed.
-
----
-
-## 🚀 Core Features
-
-| Category | Description |
-|-----------|--------------|
-| 🧠 **Bias Audits** | Plug in your ML models → get automated fairness metrics (powered by `fairlearn`, `aif360`, or your own metrics). |
-| 🔍 **Compliance Scans** | Run automated checks against GDPR, NIST AI RMF, and EU AI Act readiness templates. |
-| 🪄 **Audit Reports** | Generate audit-ready Markdown/PDF summaries for internal review or regulatory submission. |
-| 🧱 **Terraform Blueprints** | Spin up compliance-ready infrastructure for model governance, data retention, and traceability. |
-| 🔐 **Policy Hooks** | Embed policy-as-code validators into CI/CD pipelines. |
-
----
-
-## 🧭 Philosophy
-
-AI is outpacing oversight.  
-`lex.machine` is for those who build systems that *govern themselves.*
-
-You don’t “talk about responsible AI” here — you **ship it**.
-
----
-
-## 🧰 Repository Structure
-```
-lex.machine/
-│
-├── terraform/
-│ ├── modules/
-│ └── examples/
-│
-├── actions/
-│ ├── compliance-scan.yml
-│ ├── bias-audit.yml
-│ └── model-governance.yml
-│
-├── python/
-│ ├── governance/
-│ │ ├── bias_check.py
-│ │ ├── compliance_scan.py
-│ │ ├── audit_report.py
-│ │ └── risk_assessment.py
-│ ├── cli.py
-│ └── utils.py
-│
-├── docs/
-│ ├── architecture.md
-│ ├── policy_frameworks.md
-│ ├── governance_matrix.md
-│ └── examples.md
-│
-└── README.md
-
+Run the bias check:
 
 ```
-
-## 🏗️ Example: Bias Audit Workflow
-
-```yaml
-name: Bias Audit
-on: [push, pull_request]
-jobs:
-  audit:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - name: Run Bias Check
-        run: |
-          pip install -r requirements.txt
-          python python/governance/bias_check.py --input model.pkl --report bias_report.json
-      - name: Upload Report
-        uses: actions/upload-artifact@v4
-        with:
-          name: bias-report
-          path: bias_report.json
-
+pip install -r requirements.txt
+python python/governance/bias_check.py
 ```
-Result:
-✅ Model scanned.
-📊 Bias report generated.
-📁 Report stored as an immutable artifact.
 
-🧮 Example: Compliance Scan via Terraform
-```
-terraform init
-terraform apply -var 'policy_framework=gdpr'
+It generates seeded mock predictions, computes the gap in positive rates across groups, and writes `bias_report.json`. Swap the loader for your model's predictions and protected attributes to use it on real data.
 
-```
-Creates audit logs, compliance markers, and traceable resource configurations aligned with policy templates.
+## Roadmap
 
-🧱 Design Principles
+These are designed in the docs and not built yet. They are listed so the scope is honest.
 
-Everything is auditable.
-Logs, configs, and metrics aren’t side effects — they’re the product.
+- `compliance_scan.py`: scan model metadata against a chosen framework
+- `audit_report.py`: roll audit artifacts into a Markdown or PDF summary
+- Terraform modules for audit logging, retention, and access control
+- A CI workflow that fails the build when the bias score crosses a threshold
 
-Compliance ≠ Bureaucracy.
-This is automation for the most human problem: trust.
+## Design principles
 
-Policy is Code.
-Governance should compile.
+1. **Everything is evidence.** Logs, configs, and metrics are the product, not side effects.
+2. **Policy is code.** A control you cannot run is a suggestion.
+3. **Compliance without ceremony.** Automation for the most human problem: trust.
 
-🧾 License
+## Related
 
-MIT — because compliance should be open-source.
+The same fail-closed, evidence-first approach, applied to running AI systems, is in [mao-framework](https://github.com/AndMaverick/mao-framework). Residency checks live in [sovereign.map](https://github.com/AndMaverick/sovereign.map) and incident handling in [incident.log](https://github.com/AndMaverick/incident.log).
 
-🗣️ Author
-
-Built by **Maverick** — designed, coded, shipped.
-
-“I don’t tweet opinions about governance.
-I deploy them.”
+MIT licensed. Built by [AndMaverick LLC](https://www.andmaverick.com).
