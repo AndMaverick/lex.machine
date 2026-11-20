@@ -2,7 +2,7 @@
 
 **Regulation, compiled.** Governance controls that run, pass, or fail, with the evidence written down. Built so an AI system can show a regulator what it did, not just what it meant to do.
 
-AI governance fails when it lives in documents. lex.machine treats a control as code: each requirement from the EU AI Act, NIST AI RMF, GDPR and ISO/IEC 42001 is a control with a test, the evidence it relies on and how old that evidence may be. Evidence is dated and pinned to file digests, so a document edited after sign-off is caught. Every run leaves an attestation, chained to the one before it. Standard library only, Python 3.10 to 3.13.
+AI governance fails when it lives in documents. lex.machine treats a control as code: each requirement from the EU AI Act, NIST AI RMF, GDPR and ISO/IEC 42001 is a control with a test, the evidence it relies on and how old that evidence may be. Evidence is dated and pinned to file digests, so a document edited after sign off is caught. Every run leaves an attestation, chained to the one before it. Standard library only, Python 3.10 to 3.13.
 
 ## Try it
 
@@ -70,7 +70,7 @@ RESULT: FAIL
 
 ## Fairness that says what the sample can show
 
-`bias` does not compare a gap to a threshold as if it were exact. Every comparison carries a confidence interval (Newcombe for differences, Katz for the four-fifths ratio), all pairs of groups are compared with the error rate shared across them, groups below a minimum size never decide anything, and the verdict is one of `fail` (the interval is wholly beyond the allowed gap), `pass` (wholly inside) or `inconclusive`. An inconclusive result does not satisfy a fairness control, because a sample too small to show a gap is not evidence there is none.
+`bias` does not compare a gap to a threshold as if it were exact. Every comparison carries a confidence interval (Newcombe for differences, Katz for the four fifths ratio), all pairs of groups are compared with the error rate shared across them, groups below a minimum size never decide anything, and the verdict is one of `fail` (the interval is wholly beyond the allowed gap), `pass` (wholly inside) or `inconclusive`. An inconclusive result does not satisfy a fairness control, because a sample too small to show a gap is not evidence there is none.
 
 ```
 group                   n  selected      TPR      FPR
@@ -86,7 +86,7 @@ fpr_gap              INCONCLUSIVE   worst pair group_b vs group_c: -0.049 (inter
 OVERALL: FAIL
 ```
 
-The selection-rate gap is clearly nonzero (p below 0.0001) yet `inconclusive` against a 0.10 limit, because its interval straddles the limit. The true-positive-rate gap is wholly beyond it, so that one fails. `bias --evidence-out` writes the result as a `bias_test` evidence item ready to drop into a record.
+The selection rate gap is clearly nonzero (p below 0.0001) yet `inconclusive` against a 0.10 limit, because its interval straddles the limit. The true positive rate gap is wholly beyond it, so that one fails. `bias --evidence-out` writes the result as a `bias_test` evidence item ready to drop into a record.
 
 ## The evidence record
 
@@ -104,11 +104,11 @@ One JSON file, strictly loaded: duplicate keys, unknown keys, NaN and wrong type
   "gates": { "min_readiness": 1, "no_critical_gaps": true, "no_tampered": true, "max_stale": 0, "no_undetermined": true } }
 ```
 
-`seal` records digests for files that have none (it never adopts a changed file unless you pass `--force`), `verify` re-hashes them, `catalog` lists the evidence the packs ask for and the fields they read, and `explain <control>` shows one control in full. Exit codes: 0 everything asked for holds, 1 a gate failed or something was found changed, 2 the input could not be used.
+`seal` records digests for files that have none (it never adopts a changed file unless you pass `--force`), `verify` hashes again them, `catalog` lists the evidence the packs ask for and the fields they read, and `explain <control>` shows one control in full. Exit codes: 0 everything asked for holds, 1 a gate failed or something was found changed, 2 the input could not be used.
 
 ## The catalog is data
 
-62 controls in four packs (`eu-ai-act` 24, `nist-ai-rmf` 16, `gdpr` 12, `iso-42001` 10), as JSON in `lex_machine/packs/`. A control says when it applies and what must be true, in a small expression language with three-valued logic:
+62 controls in four packs (`eu-ai-act` 24, `nist-ai-rmf` 16, `gdpr` 12, `iso-42001` 10), as JSON in `lex_machine/packs/`. A control says when it applies and what must be true, in a small expression language whose logic has three values:
 
 ```
 applies:  system.risk_class == "high" and system.role in ["provider", "both"]
@@ -145,7 +145,7 @@ tamper evidence: 200 of 200 one-bit changes to an evidence file and 200 of 200 e
 speed on this machine (varies): 426 full scans per second of 62 controls, 5,097,310 rows per second audited
 ```
 
-The speed line depends on the machine; the rest is deterministic. The 127 tests run on Python 3.10 to 3.13 in CI with ruff and strict mypy, and include a check that the output is byte-identical across different `PYTHONHASHSEED` values.
+The speed line depends on the machine; the rest is deterministic. The 127 tests run on Python 3.10 to 3.13 in CI with ruff and strict mypy, and include a check that the output is identical byte for byte across different `PYTHONHASHSEED` values.
 
 ```
 python -m unittest discover -s tests -t . -v
@@ -158,7 +158,7 @@ python -m unittest discover -s tests -t . -v
 - A scan shows that evidence exists, is current, is unchanged and says what the control needs. It does not judge whether a document is any good or whether what it says is true. A digest shows a file did not change after it was sealed, not that it was right when sealed.
 - The fairness verdicts are only as good as the predictions and group labels they are given. With one decision per person they are sound; repeated decisions about the same people overstate the sample. Interval coverage is close to the nominal 95 percent in simulation (94.4 to 95.5 above) but not exact, and the Bonferroni split across pairs is conservative.
 - Demonstrating fairness takes data. At 500 per group with no true gap, the audit reaches `pass` 79 percent of the time against a 0.10 limit, and at a true gap of 0.05 only 39 percent. The rest are `inconclusive`, by design. At 2,000 per group a gap of 0.15 is `fail` 93 percent of the time.
-- The exact Fisher test is used up to 2,000 rows in a pair and a normal approximation beyond, and the report says which. The interval, not the p-value, decides the verdict.
+- The exact Fisher test is used up to 2,000 rows in a pair and a normal approximation beyond, and the report says which. The interval, not the p value, decides the verdict.
 - The history chain shows an edit to an earlier entry. It cannot show that the newest entries were cut off, so publish the head somewhere the writer cannot edit.
 - The example systems, evidence and predictions are synthetic.
 
@@ -174,7 +174,7 @@ The first version, `python/governance/` (`compliance_scan`, `audit_report`, `bia
 
 ## Related
 
-The same fail-closed, evidence-first approach for running systems is in [mao-framework](https://github.com/AndMaverick/mao-framework). Residency checks live in [sovereign.map](https://github.com/AndMaverick/sovereign.map) and incident handling in [incident.log](https://github.com/AndMaverick/incident.log).
+The same fail closed, evidence first approach for running systems is in [mao-framework](https://github.com/AndMaverick/mao-framework). Residency checks live in [sovereign.map](https://github.com/AndMaverick/sovereign.map) and incident handling in [incident.log](https://github.com/AndMaverick/incident.log).
 
 MIT licensed. Built by [AndMaverick LLC](https://www.andmaverick.com).
 
