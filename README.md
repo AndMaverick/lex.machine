@@ -2,7 +2,9 @@
 
 **Regulation, compiled.** Governance controls that run, pass, or fail, with the evidence written down. Built so an AI system can show a regulator what it did, not just what it meant to do.
 
-AI governance fails when it lives in documents. lex.machine treats a control as code: each requirement from the EU AI Act, NIST AI RMF, GDPR and ISO/IEC 42001 is a control with a test, the evidence it relies on and how old that evidence may be. Evidence is dated and pinned to file digests, so a document edited after sign off is caught. Every run leaves an attestation, chained to the one before it. Standard library only, Python 3.10 to 3.13.
+A regulator asks whether your hiring model was tested for bias before it went live. The answer is a policy document, signed in March, describing a test that someone may have run. The document did not change when the model did. Nothing connects the claim to the system, so the claim can quietly stop being true.
+
+lex.machine closes that gap by treating a control as code: each requirement from the EU AI Act, NIST AI RMF, GDPR and ISO/IEC 42001 is a control with a test, the evidence it relies on and how old that evidence may be. Evidence is dated and pinned to file digests, so a document edited after sign off is caught. Every run leaves an attestation, chained to the one before it. Standard library only, Python 3.10 to 3.13.
 
 ## Try it
 
@@ -168,9 +170,9 @@ The first version, `python/governance/` (`compliance_scan`, `audit_report`, `bia
 
 ## Principles
 
-1. **Everything is evidence.** Logs, configs, and metrics are the product, not side effects.
-2. **Policy is code.** A control you cannot run is a suggestion.
-3. **Compliance without ceremony.** Automation for the most human problem: trust.
+1. **Evidence has an age.** A test result from last year says little about this year's model, so every control states how old its evidence may be, and older evidence is marked `stale` and not silently accepted.
+2. **A control that cannot run is a suggestion.** If nothing can pass or fail it, nobody finds out when it stops being true.
+3. **Missing is not the same as fine.** A fact left out of the record leaves a control `undetermined`. It never makes the obligation disappear.
 
 ## Related
 
