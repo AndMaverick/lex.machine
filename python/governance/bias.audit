@@ -35,10 +35,10 @@ jobs:
 
           threshold=0.1
           if (( $(echo "$bias_score > $threshold" | bc -l) )); then
-            echo "❌ Compliance failed — bias score ($bias_score) exceeds threshold ($threshold)"
+            echo "❌ Compliance failed: bias score ($bias_score) exceeds threshold ($threshold)"
             exit 1
           else
-            echo "✅ Compliance passed — bias score ($bias_score) within acceptable range"
+            echo "✅ Compliance passed: bias score ($bias_score) within acceptable range"
           fi
 
       - name: 📁 Upload Bias Report

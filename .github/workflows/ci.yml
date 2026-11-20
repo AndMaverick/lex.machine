@@ -7,10 +7,11 @@ on:
 
 jobs:
   test:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     strategy:
+      fail-fast: false
       matrix:
-        python-version: ["3.11", "3.12", "3.13"]
+        python-version: ["3.10", "3.11", "3.12", "3.13"]
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -18,3 +19,31 @@ jobs:
           python-version: ${{ matrix.python-version }}
       - name: Unit tests
         run: python -m unittest discover -s tests -t . -v
+      - name: Command line smoke test
+        run: python -m lex_machine --help
+      - name: Lint the packs
+        run: python -m lex_machine lint eu-ai-act nist-ai-rmf gdpr iso-42001
+      - name: Passing example must pass its gates
+        run: python -m lex_machine scan examples/triage_v2.json
+      - name: Failing example must exit 1
+        run: |
+          set +e
+          python -m lex_machine scan examples/hiring_screen.json > /dev/null
+          test "$?" -eq 1
+      - name: Evidence files match their digests
+        run: python -m lex_machine verify examples/triage_v2.json
+      - name: Governance matrix is current
+        run: python -m lex_machine matrix | diff - docs/governance_matrix.md
+      - name: Verification figures
+        run: python examples/evaluate.py
+
+  quality:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install ruff mypy
+      - run: ruff check .
+      - run: mypy

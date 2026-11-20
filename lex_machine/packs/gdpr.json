@@ -1,0 +1,165 @@
+{
+ "name": "gdpr",
+ "title": "GDPR readiness for AI systems",
+ "version": "2026.11",
+ "source": "Regulation (EU) 2016/679",
+ "note": "Control mappings are the author's reading of each provision, written to make engineering readiness checkable. They are not legal advice and do not decide what a regulation requires of you. Check the text and your counsel, and edit this file to match their view.",
+ "controls": [
+  {
+   "id": "gdpr.art6.lawful-basis",
+   "title": "Lawful basis recorded",
+   "reference": "Regulation (EU) 2016/679, Arts. 5(1)(a) and 6",
+   "applies": "system.personal_data == true",
+   "requires": "present(evidence.lawful_basis) and evidence.lawful_basis.values.basis in [\"consent\", \"contract\", \"legal_obligation\", \"vital_interests\", \"public_task\", \"legitimate_interests\"]",
+   "evidence": [
+    "lawful_basis"
+   ],
+   "max_age_days": 365,
+   "severity": "critical",
+   "remedy": "Record the Article 6 lawful basis for each purpose, and the legitimate-interests assessment where that is the basis."
+  },
+  {
+   "id": "gdpr.art5-1c.minimisation",
+   "title": "Data minimisation reviewed",
+   "reference": "Regulation (EU) 2016/679, Art. 5(1)(c)",
+   "applies": "system.personal_data == true",
+   "requires": "present(evidence.data_minimisation) and evidence.data_minimisation.values.reviewed == true",
+   "evidence": [
+    "data_minimisation"
+   ],
+   "max_age_days": 365,
+   "severity": "major",
+   "remedy": "Review that the personal data used is adequate, relevant and limited to what the purpose needs."
+  },
+  {
+   "id": "gdpr.art5-1e.storage-limitation",
+   "title": "Retention schedule defined",
+   "reference": "Regulation (EU) 2016/679, Art. 5(1)(e)",
+   "applies": "system.personal_data == true",
+   "requires": "present(evidence.retention_schedule) and evidence.retention_schedule.values.schedule_defined == true",
+   "evidence": [
+    "retention_schedule"
+   ],
+   "max_age_days": 365,
+   "severity": "major",
+   "remedy": "Define how long each kind of personal data is kept and how it is deleted."
+  },
+  {
+   "id": "gdpr.art5-2.accountability",
+   "title": "Accountable owner named",
+   "reference": "Regulation (EU) 2016/679, Art. 5(2)",
+   "applies": "system.personal_data == true",
+   "requires": "present(evidence.roles_responsibilities) and evidence.roles_responsibilities.values.owner_named == true",
+   "evidence": [
+    "roles_responsibilities"
+   ],
+   "max_age_days": 365,
+   "severity": "major",
+   "remedy": "Name the person accountable for the processing and keep the evidence that the principles are met."
+  },
+  {
+   "id": "gdpr.art13.privacy-notice",
+   "title": "Privacy notice published",
+   "reference": "Regulation (EU) 2016/679, Arts. 13 and 14",
+   "applies": "system.personal_data == true",
+   "requires": "present(evidence.privacy_notice) and evidence.privacy_notice.values.published == true",
+   "evidence": [
+    "privacy_notice"
+   ],
+   "max_age_days": 365,
+   "severity": "major",
+   "remedy": "Tell people what you process, why, on what basis, for how long and what their rights are."
+  },
+  {
+   "id": "gdpr.art12-22.data-subject-rights",
+   "title": "Data subject rights process operational",
+   "reference": "Regulation (EU) 2016/679, Arts. 12 to 22",
+   "applies": "system.personal_data == true",
+   "requires": "present(evidence.dsr_process) and evidence.dsr_process.values.operational == true",
+   "evidence": [
+    "dsr_process"
+   ],
+   "max_age_days": 365,
+   "severity": "major",
+   "remedy": "Run a process to answer access, correction, erasure and objection requests within the deadline."
+  },
+  {
+   "id": "gdpr.art22.automated-decisions",
+   "title": "Safeguards for automated decisions",
+   "reference": "Regulation (EU) 2016/679, Art. 22",
+   "applies": "system.personal_data == true and system.automated_decisions == true",
+   "requires": "present(evidence.automated_decision_safeguards) and evidence.automated_decision_safeguards.values.human_intervention == true and evidence.automated_decision_safeguards.values.can_contest == true and evidence.automated_decision_safeguards.values.explanation_available == true",
+   "evidence": [
+    "automated_decision_safeguards"
+   ],
+   "max_age_days": 365,
+   "severity": "critical",
+   "remedy": "Give people a way to obtain human intervention, express their view and contest a decision that has legal or similarly significant effect."
+  },
+  {
+   "id": "gdpr.art25.by-design",
+   "title": "Data protection by design and by default",
+   "reference": "Regulation (EU) 2016/679, Art. 25",
+   "applies": "system.personal_data == true",
+   "requires": "present(evidence.privacy_by_design) and evidence.privacy_by_design.values.assessed == true",
+   "evidence": [
+    "privacy_by_design"
+   ],
+   "max_age_days": 365,
+   "severity": "major",
+   "remedy": "Build data protection into the design and set the defaults to the least data needed."
+  },
+  {
+   "id": "gdpr.art30.records-of-processing",
+   "title": "Records of processing activities",
+   "reference": "Regulation (EU) 2016/679, Art. 30",
+   "applies": "system.personal_data == true",
+   "requires": "present(evidence.ropa) and evidence.ropa.values.maintained == true",
+   "evidence": [
+    "ropa"
+   ],
+   "max_age_days": 365,
+   "severity": "major",
+   "remedy": "Maintain the record of processing activities and keep it current."
+  },
+  {
+   "id": "gdpr.art32.security",
+   "title": "Security of processing",
+   "reference": "Regulation (EU) 2016/679, Art. 32",
+   "applies": "system.personal_data == true",
+   "requires": "present(evidence.security_measures) and evidence.security_measures.values.documented == true",
+   "evidence": [
+    "security_measures"
+   ],
+   "max_age_days": 365,
+   "severity": "critical",
+   "remedy": "Document the technical and organisational measures that fit the risk, and test them."
+  },
+  {
+   "id": "gdpr.art33.breach-notification",
+   "title": "Breach notification procedure",
+   "reference": "Regulation (EU) 2016/679, Arts. 33 and 34",
+   "applies": "system.personal_data == true",
+   "requires": "present(evidence.breach_procedure) and evidence.breach_procedure.values.notify_authority_72h == true",
+   "evidence": [
+    "breach_procedure"
+   ],
+   "max_age_days": 365,
+   "severity": "major",
+   "remedy": "Be able to assess a breach and notify the supervisory authority within 72 hours where required."
+  },
+  {
+   "id": "gdpr.art35.dpia",
+   "title": "Data protection impact assessment",
+   "reference": "Regulation (EU) 2016/679, Art. 35",
+   "applies": "system.personal_data == true and (system.automated_decisions == true or system.risk_class == \"high\")",
+   "requires": "present(evidence.dpia) and evidence.dpia.values.completed == true and evidence.dpia.values.residual_risk_accepted == true",
+   "evidence": [
+    "dpia"
+   ],
+   "max_age_days": 730,
+   "severity": "critical",
+   "remedy": "Complete a DPIA before the processing starts, consult the supervisory authority if high residual risk remains, and review it."
+  }
+ ]
+}
