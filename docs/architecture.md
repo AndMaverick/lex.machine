@@ -1,130 +1,46 @@
-# 🧭 Architecture Overview
+# Architecture
 
-## ⚖️ lex.machine — Infrastructure-as-Governance
+lex.machine has one job: show, with evidence that can be checked, which controls a system meets today and what changed since the last time anyone looked.
 
-`lex.machine` operationalizes AI governance.  
-It transforms ethical, legal, and compliance principles into reproducible, automated workflows.
+## Pieces
 
-This document outlines the system’s architecture, component relationships, and core logic.
+| Module | What it does |
+|---|---|
+| `expr` | A small expression language for controls with three-valued logic. Parsed and walked; nothing is executed. |
+| `packs` | The catalog of controls as JSON. Every expression is parsed and every path checked when a pack loads. |
+| `record` | The evidence record, loaded strictly, and the re-hashing of the files it points at. |
+| `engine` | Evaluates a record against packs. Each control ends in exactly one status. Computes exact readiness and applies gates. |
+| `fairness` | Group comparisons with confidence intervals and a pass, fail or inconclusive verdict. |
+| `chain` | A hash-chained scan history, so an edit to an earlier result is visible. |
+| `report` | Text, Markdown and JSON renderings, and the governance matrix. |
+| `cli` | `scan`, `bias`, `seal`, `verify`, `history`, `packs`, `explain`, `lint`, `catalog`, `matrix`, `fingerprint`. |
 
----
+The modules under `python/governance/` are the first version and are unchanged.
 
-## 🧱 Core Components
-
-### 1. **Python Governance Layer**
-Located in `python/governance/`, this layer defines the core logic for compliance evaluation.
-
-| Module | Purpose |
-|---------|----------|
-| `bias_check.py` | Performs fairness metrics and generates audit-ready bias reports. |
-| `compliance_scan.py` | (Planned) Scans model metadata against predefined frameworks (GDPR, AI Act, NIST AI RMF). |
-| `audit_report.py` | (Planned) Aggregates audit artifacts into structured summaries (Markdown / PDF). |
-
-Each script can run independently or be triggered via GitHub Actions.
-
----
-
-### 2. **Automation Layer (GitHub Actions)**
-Located in `.github/workflows/`.
-
-The `bias-audit.yml` workflow acts as an automated compliance gate:
-- Executes the bias check script.
-- Evaluates the resulting bias score.
-- Marks the workflow as ✅ compliant or ❌ non-compliant.
-- Uploads audit artifacts for traceability.
-
-This establishes *compliance as CI/CD* — every push is an audit event.
-
----
-
-### 3. **Infrastructure Layer (Terraform)**
-*(Planned Component)*
-
-`lex.machine/terraform/` will provide reusable IaC blueprints for:
-- Audit logging
-- Data retention policies
-- Compliance-ready infrastructure
-- Access control enforcement
-
-Each Terraform module maps to a policy control area (e.g., transparency, security, bias mitigation).
-
----
-
-### 4. **Documentation & Policy Layer**
-The `docs/` folder serves as the bridge between **technical execution** and **policy context**.
-
-- `architecture.md` → system overview (this document)
-- `policy_frameworks.md` → definitions of governance standards
-- `governance_matrix.md` → mapping of controls to components
-- `examples.md` → how to deploy governance templates
-
----
-
-## 🔄 Data & Workflow Flow
-
-Data / Model
-↓
-Bias Audit (Python)
-↓
-Compliance Evaluation (GitHub Action)
-↓
-Audit Report (Artifact)
-↓
-Governance Dashboard (Future)
+## Flow
 
 ```
-
-Every push triggers a compliance verification cycle.  
-Each cycle produces **immutable evidence** of model accountability.
-
----
-
-## 🧩 Dependencies
-
-Install dependencies with:
-
-```bash
-pip install -r requirements.txt
-
+system description + evidence (dated, with file digests)
+        |
+        v
+  packs (what must be true)  ->  engine  ->  findings, readiness, gates
+                                      |
+                                      v
+                          attestation (record + catalog + result hashes)
+                                      |
+                                      v
+                          history (each entry hashes the one before)
 ```
-Core packages:
 
-pandas / numpy → data handling
+## Decisions worth knowing
 
-fairlearn / aif360 → fairness metrics
+- **Three-valued logic.** Missing evidence is unknown, and unknown never satisfies a control. A decided control is not held up by an unrelated gap.
+- **Statuses, not a score.** A readiness percentage is reported, but every control also ends in a named status with the reason: `satisfied`, `failed`, `missing`, `stale`, `tampered`, `invalid`, `undetermined` or `not_applicable`.
+- **Evidence is pinned.** A file recorded with a digest that no longer matches turns every control that relies on it to `tampered`, even if the values in the record still look fine.
+- **The catalog is pinned too.** Each attestation names the digest of every pack it was measured against, so loosening a control changes the attestation.
+- **Statistics say what they cannot show.** A fairness gap is reported with an interval, and a sample too small to decide is `inconclusive`, which does not satisfy a control.
+- **Exact arithmetic where it is cheap.** Readiness is a fraction of integer weights, and the exact Fisher test compares integers.
 
-jq, bc (preinstalled on runners) → compliance scoring logic
+## What it does not do
 
----
-
-🧠 Design Philosophy
-
-Transparency by Default: every run leaves an auditable trail.
-
-Policy-as-Code: governance rules are executable artifacts.
-
-Compliance as CI/CD: every push = a governance checkpoint.
-
-Automation for Trust: reliability replaces self-reporting.
-
----
-
-🗺️ Future Roadmap
-
-Add compliance_scan.py and audit_report.py.
-
-Integrate Terraform-based audit logging.
-
-Implement PR-level compliance comments.
-
-Generate compliance dashboards (Streamlit or Gradio).
-
----
-
-**Author:** **Maverick**
-
-**Project:** *lex.machine*
-
-> “Governance should compile.”
-
----
+It does not decide what a regulation requires, judge the quality of a document, or prove the evidence is true. It shows that the evidence is present, current, unchanged and, where it is numeric, what it says. Publish the history head somewhere the writer cannot edit, because a chain shows edits but cannot show that its newest entries were cut off.

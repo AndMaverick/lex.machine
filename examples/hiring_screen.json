@@ -1,0 +1,400 @@
+{
+ "as_of": "2026-11-15",
+ "evidence": {
+  "accuracy_robustness": {
+   "collected": "2026-08-20",
+   "values": {
+    "accuracy_declared": true,
+    "cybersecurity_tested": true,
+    "robustness_tested": true
+   }
+  },
+  "ai_disclosure": {
+   "collected": "2026-08-20",
+   "values": {
+    "disclosed": true
+   }
+  },
+  "ai_literacy": {
+   "collected": "2026-08-20",
+   "values": {
+    "training_delivered": true
+   }
+  },
+  "ai_policy": {
+   "collected": "2026-08-20",
+   "values": {
+    "approved": true
+   }
+  },
+  "automated_decision_safeguards": {
+   "collected": "2026-08-20",
+   "values": {
+    "can_contest": true,
+    "explanation_available": true,
+    "human_intervention": true
+   }
+  },
+  "bias_test": {
+   "artifacts": [
+    {
+     "path": "artifacts/hiring_screen/predictions.csv",
+     "sha256": "1502ece088937c9ec4ac6d224cc9f09d88c85f3b64f26c81f1f2a4d42d0dbaf9"
+    }
+   ],
+   "collected": "2026-10-20",
+   "values": {
+    "alpha": 0.05,
+    "group_rates": {
+     "group_a": {
+      "fpr": 0.153846,
+      "n": 600,
+      "selection_rate": 0.448333,
+      "tpr": 0.863454
+     },
+     "group_b": {
+      "fpr": 0.123626,
+      "n": 600,
+      "selection_rate": 0.313333,
+      "tpr": 0.605932
+     },
+     "group_c": {
+      "fpr": 0.172414,
+      "n": 40,
+      "selection_rate": 0.325,
+      "tpr": 0.727273
+     }
+    },
+    "groups": 3,
+    "max_gap": 0.1,
+    "metrics": {
+     "four_fifths": {
+      "verdict": "inconclusive",
+      "worst_estimate": 0.698885,
+      "worst_high": 0.837381,
+      "worst_low": 0.583295,
+      "worst_pair": [
+       "group_b",
+       "group_a"
+      ]
+     },
+     "fpr_gap": {
+      "verdict": "inconclusive",
+      "worst_estimate": -0.048787,
+      "worst_high": 0.069667,
+      "worst_low": -0.26843,
+      "worst_pair": [
+       "group_b",
+       "group_c"
+      ]
+     },
+     "selection_rate_gap": {
+      "verdict": "inconclusive",
+      "worst_estimate": 0.135,
+      "worst_high": 0.200348,
+      "worst_low": 0.067957,
+      "worst_pair": [
+       "group_a",
+       "group_b"
+      ]
+     },
+     "tpr_gap": {
+      "verdict": "fail",
+      "worst_estimate": 0.257522,
+      "worst_high": 0.346883,
+      "worst_low": 0.162997,
+      "worst_pair": [
+       "group_a",
+       "group_b"
+      ]
+     }
+    },
+    "min_group": 30,
+    "min_ratio": 0.8,
+    "overall": "fail",
+    "rows": 1240,
+    "smallest_group": 40
+   }
+  },
+  "breach_procedure": {
+   "collected": "2026-08-20",
+   "values": {
+    "notify_authority_72h": true
+   }
+  },
+  "conformity_assessment": {
+   "collected": "2026-08-20",
+   "values": {
+    "assessment_completed": true,
+    "declaration_of_conformity": true,
+    "registered_in_eu_database": true
+   }
+  },
+  "context_documented": {
+   "collected": "2026-08-20",
+   "values": {
+    "intended_purpose_documented": true,
+    "users_identified": true
+   }
+  },
+  "data_governance": {
+   "collected": "2026-08-20",
+   "values": {
+    "bias_examined": true,
+    "provenance_documented": true,
+    "representativeness_assessed": true
+   }
+  },
+  "data_minimisation": {
+   "collected": "2026-08-20",
+   "values": {
+    "reviewed": false
+   }
+  },
+  "decommissioning": {
+   "collected": "2026-08-20",
+   "values": {
+    "deactivation_procedure": true
+   }
+  },
+  "dpia": {
+   "artifacts": [
+    {
+     "path": "artifacts/hiring_screen/dpia.md",
+     "sha256": "cb00156a660fba92ab2266ea21513212cf330e218eb358ee5c1710e7ee5e2a40"
+    }
+   ],
+   "collected": "2026-08-20",
+   "values": {
+    "completed": true,
+    "residual_risk_accepted": false
+   }
+  },
+  "dsr_process": {
+   "collected": "2026-08-20",
+   "values": {
+    "operational": true
+   }
+  },
+  "explainability": {
+   "collected": "2026-08-20",
+   "values": {
+    "documented": true
+   }
+  },
+  "governance_policy": {
+   "collected": "2026-08-20",
+   "values": {
+    "legal_requirements_mapped": true
+   }
+  },
+  "gpai_copyright": {
+   "collected": "2026-08-20",
+   "values": {
+    "copyright_policy": true,
+    "training_summary_published": true
+   }
+  },
+  "gpai_documentation": {
+   "collected": "2026-08-20",
+   "values": {
+    "downstream_information": true,
+    "technical_documentation": true
+   }
+  },
+  "gpai_systemic_risk": {
+   "collected": "2026-08-20",
+   "values": {
+    "adversarial_testing": true,
+    "cybersecurity_protection": true,
+    "incident_tracking": true,
+    "model_evaluation": true
+   }
+  },
+  "impact_assessment": {
+   "collected": "2026-08-20",
+   "values": {
+    "completed": true
+   }
+  },
+  "internal_audit": {
+   "collected": "2026-08-20",
+   "values": {
+    "completed": true
+   }
+  },
+  "lawful_basis": {
+   "collected": "2026-08-20",
+   "values": {
+    "basis": "legitimate_interests"
+   }
+  },
+  "lifecycle_process": {
+   "collected": "2026-08-20",
+   "values": {
+    "defined": true
+   }
+  },
+  "logging": {
+   "collected": "2026-08-20",
+   "values": {
+    "automatic_logging": true,
+    "retention_days": 365
+   }
+  },
+  "measurement_plan": {
+   "collected": "2026-08-20",
+   "values": {
+    "metrics_defined": true
+   }
+  },
+  "post_market_monitoring": {
+   "collected": "2026-08-20",
+   "values": {
+    "plan_in_place": true
+   }
+  },
+  "privacy_by_design": {
+   "collected": "2026-08-20",
+   "values": {
+    "assessed": true
+   }
+  },
+  "privacy_notice": {
+   "collected": "2026-08-20",
+   "values": {
+    "published": true
+   }
+  },
+  "privacy_risk": {
+   "collected": "2025-02-10",
+   "values": {
+    "assessed": true
+   }
+  },
+  "prohibited_practices_screen": {
+   "collected": "2026-08-20",
+   "values": {
+    "none_apply": true
+   }
+  },
+  "quality_management": {
+   "collected": "2026-08-20",
+   "values": {
+    "qms_in_place": true
+   }
+  },
+  "resource_documentation": {
+   "collected": "2026-08-20",
+   "values": {
+    "documented": true
+   }
+  },
+  "retention_schedule": {
+   "collected": "2026-08-20",
+   "values": {
+    "schedule_defined": true
+   }
+  },
+  "risk_classification": {
+   "collected": "2026-08-20",
+   "values": {}
+  },
+  "risk_management": {
+   "collected": "2026-08-20",
+   "values": {
+    "foreseeable_misuse_assessed": true,
+    "residual_risk_acceptable": true
+   }
+  },
+  "risk_treatment": {
+   "collected": "2026-08-20",
+   "values": {
+    "treatment_documented": true
+   }
+  },
+  "roles_responsibilities": {
+   "collected": "2026-08-20",
+   "values": {
+    "escalation_path": true,
+    "owner_named": true
+   }
+  },
+  "ropa": {
+   "collected": "2026-08-20",
+   "values": {
+    "maintained": true
+   }
+  },
+  "safety_evaluation": {
+   "collected": "2026-08-20",
+   "values": {
+    "completed": true
+   }
+  },
+  "security_evaluation": {
+   "collected": "2026-08-20",
+   "values": {
+    "completed": true
+   }
+  },
+  "security_measures": {
+   "collected": "2026-08-20",
+   "values": {
+    "documented": true
+   }
+  },
+  "synthetic_content_marking": {
+   "collected": "2026-08-20",
+   "values": {
+    "machine_readable_marking": true
+   }
+  },
+  "technical_documentation": {
+   "collected": "2026-08-20",
+   "values": {
+    "annex_iv_complete": true
+   }
+  },
+  "third_party_risk": {
+   "collected": "2026-08-20",
+   "values": {
+    "assessed": true
+   }
+  },
+  "transparency_instructions": {
+   "collected": "2026-08-20",
+   "values": {
+    "instructions_for_use": true
+   }
+  },
+  "use_policy": {
+   "collected": "2026-08-20",
+   "values": {
+    "responsible_use_defined": true
+   }
+  }
+ },
+ "gates": {
+  "max_stale": 0,
+  "min_readiness": 0.8,
+  "no_critical_gaps": true,
+  "no_tampered": true,
+  "no_undetermined": true
+ },
+ "packs": [
+  "eu-ai-act",
+  "nist-ai-rmf",
+  "gdpr"
+ ],
+ "system": {
+  "automated_decisions": true,
+  "fria_scope": true,
+  "intended_purpose": "Rank job applications for recruiters",
+  "name": "cv-screen-assistant",
+  "personal_data": true,
+  "risk_class": "high",
+  "role": "deployer",
+  "version": "0.9"
+ }
+}

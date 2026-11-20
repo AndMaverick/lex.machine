@@ -1,0 +1,139 @@
+{
+ "name": "iso-42001",
+ "title": "ISO/IEC 42001 readiness",
+ "version": "2026.11",
+ "source": "ISO/IEC 42001:2023",
+ "note": "Control mappings are the author's reading of each provision, written to make engineering readiness checkable. They are not legal advice and do not decide what a regulation requires of you. Check the text and your counsel, and edit this file to match their view.",
+ "controls": [
+  {
+   "id": "iso42001.a2.policies",
+   "title": "AI policy approved",
+   "reference": "ISO/IEC 42001:2023, Annex A, A.2",
+   "applies": "true",
+   "requires": "present(evidence.ai_policy) and evidence.ai_policy.values.approved == true",
+   "evidence": [
+    "ai_policy"
+   ],
+   "max_age_days": 365,
+   "severity": "major",
+   "remedy": "Approve an AI policy that matches the organisation's objectives and review it."
+  },
+  {
+   "id": "iso42001.a3.organisation",
+   "title": "Roles and accountability",
+   "reference": "ISO/IEC 42001:2023, Annex A, A.3",
+   "applies": "true",
+   "requires": "present(evidence.roles_responsibilities) and evidence.roles_responsibilities.values.owner_named == true and evidence.roles_responsibilities.values.escalation_path == true",
+   "evidence": [
+    "roles_responsibilities"
+   ],
+   "max_age_days": 365,
+   "severity": "major",
+   "remedy": "Define and allocate AI roles and responsibilities, and a way to report concerns."
+  },
+  {
+   "id": "iso42001.a4.resources",
+   "title": "Resources for the AI system documented",
+   "reference": "ISO/IEC 42001:2023, Annex A, A.4",
+   "applies": "true",
+   "requires": "present(evidence.resource_documentation) and evidence.resource_documentation.values.documented == true",
+   "evidence": [
+    "resource_documentation"
+   ],
+   "max_age_days": 365,
+   "severity": "minor",
+   "remedy": "Document the data, tooling, compute and human resources the system relies on."
+  },
+  {
+   "id": "iso42001.a5.impact",
+   "title": "AI system impact assessment",
+   "reference": "ISO/IEC 42001:2023, Annex A, A.5",
+   "applies": "true",
+   "requires": "present(evidence.impact_assessment) and evidence.impact_assessment.values.completed == true",
+   "evidence": [
+    "impact_assessment"
+   ],
+   "max_age_days": 365,
+   "severity": "major",
+   "remedy": "Assess the impacts of the system on individuals, groups and society and keep the results."
+  },
+  {
+   "id": "iso42001.a6.lifecycle",
+   "title": "Life cycle processes defined",
+   "reference": "ISO/IEC 42001:2023, Annex A, A.6",
+   "applies": "true",
+   "requires": "present(evidence.lifecycle_process) and evidence.lifecycle_process.values.defined == true",
+   "evidence": [
+    "lifecycle_process"
+   ],
+   "max_age_days": 365,
+   "severity": "major",
+   "remedy": "Define the processes for design, verification, deployment, operation and retirement."
+  },
+  {
+   "id": "iso42001.a7.data",
+   "title": "Data for AI systems managed",
+   "reference": "ISO/IEC 42001:2023, Annex A, A.7",
+   "applies": "true",
+   "requires": "present(evidence.data_governance) and evidence.data_governance.values.provenance_documented == true",
+   "evidence": [
+    "data_governance"
+   ],
+   "max_age_days": 730,
+   "severity": "major",
+   "remedy": "Document data provenance, quality and preparation."
+  },
+  {
+   "id": "iso42001.a8.information",
+   "title": "Information for interested parties",
+   "reference": "ISO/IEC 42001:2023, Annex A, A.8",
+   "applies": "true",
+   "requires": "present(evidence.transparency_instructions) and evidence.transparency_instructions.values.instructions_for_use == true",
+   "evidence": [
+    "transparency_instructions"
+   ],
+   "max_age_days": 365,
+   "severity": "minor",
+   "remedy": "Give users and other interested parties the information they need to use the system and understand its limits."
+  },
+  {
+   "id": "iso42001.a9.use",
+   "title": "Responsible use defined",
+   "reference": "ISO/IEC 42001:2023, Annex A, A.9",
+   "applies": "true",
+   "requires": "present(evidence.use_policy) and evidence.use_policy.values.responsible_use_defined == true",
+   "evidence": [
+    "use_policy"
+   ],
+   "max_age_days": 365,
+   "severity": "minor",
+   "remedy": "Define the processes and objectives for responsible use of the system."
+  },
+  {
+   "id": "iso42001.a10.third-party",
+   "title": "Third-party and customer relationships",
+   "reference": "ISO/IEC 42001:2023, Annex A, A.10",
+   "applies": "true",
+   "requires": "present(evidence.third_party_risk) and evidence.third_party_risk.values.assessed == true",
+   "evidence": [
+    "third_party_risk"
+   ],
+   "max_age_days": 365,
+   "severity": "minor",
+   "remedy": "Allocate responsibilities with suppliers and customers and assess the risks they bring."
+  },
+  {
+   "id": "iso42001.c9-2.internal-audit",
+   "title": "Internal audit of the management system",
+   "reference": "ISO/IEC 42001:2023, Clause 9.2",
+   "applies": "true",
+   "requires": "present(evidence.internal_audit) and evidence.internal_audit.values.completed == true",
+   "evidence": [
+    "internal_audit"
+   ],
+   "max_age_days": 365,
+   "severity": "major",
+   "remedy": "Audit the management system at planned intervals and record findings and actions."
+  }
+ ]
+}

@@ -1,74 +1,35 @@
-# 🧾 Policy Frameworks
+# How the frameworks are read
 
-## ⚖️ Purpose
+lex.machine turns four frameworks into controls that run: the EU AI Act, the NIST AI Risk Management Framework, the GDPR and ISO/IEC 42001. This page says how each was read, what is covered and what is deliberately not. The full list of controls, generated from the packs, is in [governance_matrix.md](governance_matrix.md).
 
-This document maps major AI governance frameworks — **EU AI Act**, **NIST AI Risk Management Framework**, and **GDPR** — to potential automation patterns within `lex.machine`.  
-The goal: translate legal requirements into executable code.
+None of this is legal advice. A control is the author's reading of a provision, written so that engineering readiness can be checked. It does not decide what a regulation requires of you. The packs are plain JSON: if your counsel reads a provision differently, edit the control and the change shows in the pack digest.
 
----
+## EU AI Act (Regulation (EU) 2024/1689)
 
-## 🇪🇺 European Union AI Act
+Covered: the prohibited-practices screen (Art. 5); classification (Art. 6); the provider obligations for high-risk systems (Arts. 9 to 15, 17, 43, 47, 49, 72, 73), including the bias examination in Art. 10; deployer obligations and the fundamental rights impact assessment (Arts. 26 and 27); AI literacy (Art. 4); the transparency duties for systems that talk to people or generate content (Art. 50); and the duties of general-purpose model providers, including systemic-risk models (Arts. 53 and 55).
 
-### 🎯 Objective
-Create a **risk-based regulatory system** for AI that emphasizes transparency, accountability, and human oversight.
+Applicability is decided from the system description (`risk_class`, `role`, `gpai`, `systemic_risk`, `interacts_with_people`, `generates_synthetic_content`, `fria_scope`). A fact the record does not state leaves the control `undetermined` instead of making it vanish.
 
-### 🔧 How `lex.machine` Can Enforce It
-| Control Area | Automation Concept | Implementation |
-|---------------|--------------------|----------------|
-| **Risk Classification** | Tag AI systems by risk tier (unacceptable → minimal) | Metadata schema / Terraform variable |
-| **Record-Keeping** | Persist audit logs for each pipeline run | CI/CD artifact retention / Terraform storage bucket |
-| **Fairness & Bias Checks** | Quantify outcome disparities | `python/governance/bias_check.py` |
-| **Transparency Reporting** | Auto-generate summaries per run | `audit_report.py` *(planned)* |
+Not covered: the dates on which each obligation starts to apply, which have been the subject of amendment proposals; sector-specific rules for systems under Annex I; the content tests behind each Annex III category; and authority guidance as it is issued. Check the current position before you rely on a date.
 
----
+## NIST AI RMF 1.0
 
-## 🇺🇸 NIST AI Risk Management Framework (AI RMF)
+Covered: sixteen subcategories across GOVERN, MAP, MEASURE and MANAGE that can be shown with evidence, among them legal requirements (GOVERN 1.1), roles (GOVERN 2.1), context (MAP 1.1), impacts (MAP 5.1), validity (MEASURE 2.5), safety and security (MEASURE 2.6 and 2.7), privacy (MEASURE 2.10), fairness and bias (MEASURE 2.11), and post-deployment monitoring and incidents (MANAGE 4.1 and 4.3). The framework is voluntary, so every control applies to every system.
 
-### 🎯 Objective
-Provide a **structured lifecycle approach** for managing AI risks across four pillars: *Map → Measure → Manage → Govern.*
+Not covered: the remaining subcategories, and the NIST playbook's suggested actions. The packs check that evidence exists, is current and unchanged. They do not judge its quality.
 
-### 🔧 How `lex.machine` Can Enforce It
-| Function | Automation Concept | Implementation |
-|-----------|--------------------|----------------|
-| **Map** | Define system context, data flows, and stakeholders | YAML config + Terraform variables |
-| **Measure** | Evaluate bias, accuracy, and robustness | `bias_check.py` + metrics aggregation |
-| **Manage** | Continuous monitoring of compliance | GitHub Actions workflow (`bias-audit.yml`) |
-| **Govern** | Document and report decisions | JSON + Markdown artifacts |
+## GDPR (Regulation (EU) 2016/679)
 
----
+Covered, for systems that process personal data: lawful basis (Art. 6), minimisation and storage limitation (Art. 5), accountability (Art. 5(2)), information to people (Arts. 13 and 14), data subject rights (Arts. 12 to 22), automated decisions (Art. 22), protection by design (Art. 25), records of processing (Art. 30), security (Art. 32), breach notification (Arts. 33 and 34) and the data protection impact assessment (Art. 35).
 
-## 🇪🇺 General Data Protection Regulation (GDPR)
+Not covered: international transfers, joint controllership and processor contracts, and the national rules that sit on top of the Regulation.
 
-### 🎯 Objective
-Safeguard individuals’ personal data and ensure AI systems maintain **lawfulness, fairness, and transparency.**
+## ISO/IEC 42001:2023
 
-### 🔧 How `lex.machine` Can Enforce It
-| Control Area | Automation Concept | Implementation |
-|---------------|--------------------|----------------|
-| **Data Minimization** | Validate data source scope | Terraform variable constraints |
-| **Right to Explanation** | Generate readable model decision traces | `audit_report.py` *(planned)* |
-| **Accountability** | Maintain versioned audit evidence | GitHub Actions artifact uploads |
+Covered at the level of the Annex A control categories (A.2 to A.10) and the internal audit clause (9.2). It maps to the same evidence as the other packs, which is the point: collect an item once and it counts wherever it is relevant.
 
----
+Not covered: the management system clauses other than 9.2, and the individual Annex A controls beneath each category.
 
-## 🧠 Core Design Principle
+## How evidence is treated
 
-> “Every compliance obligation can be expressed as code.”
-
-`lex.machine` treats governance frameworks as **programmable control systems** — policy-as-infrastructure.
-
----
-
-## 🗺️ Integration Flow
-
-Policy Text → Control Mapping → Python Validator → CI/CD Enforcement → Audit Artifact
-
-
-This document evolves as global regulations do. Each addition strengthens the bridge between **law** and **logic**.
-
----
-
-**Maintainer:** **Maverick**  
-**Project:** *lex.machine*  
-
-> “Where compliance meets compilation.”
+A control is met only when the evidence exists, the test on its values is true, it is no older than the control allows, and any file it points at still matches the digest recorded for it. A value that is not in the record is unknown, never false, so a gap cannot make a control look met. A fairness result that is inconclusive does not satisfy a fairness control, because a sample that cannot show a gap is small is not evidence that it is small.

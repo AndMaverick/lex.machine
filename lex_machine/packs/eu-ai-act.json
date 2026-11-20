@@ -1,0 +1,321 @@
+{
+ "name": "eu-ai-act",
+ "title": "EU AI Act readiness",
+ "version": "2026.11",
+ "source": "Regulation (EU) 2024/1689 (Artificial Intelligence Act)",
+ "note": "Control mappings are the author's reading of each provision, written to make engineering readiness checkable. They are not legal advice and do not decide what a regulation requires of you. Check the text and your counsel, and edit this file to match their view.",
+ "controls": [
+  {
+   "id": "eu.art5.prohibited-practices",
+   "title": "No prohibited practice applies",
+   "reference": "Regulation (EU) 2024/1689, Art. 5",
+   "applies": "true",
+   "requires": "system.risk_class != \"prohibited\" and present(evidence.prohibited_practices_screen) and evidence.prohibited_practices_screen.values.none_apply == true",
+   "evidence": [
+    "prohibited_practices_screen"
+   ],
+   "max_age_days": 365,
+   "severity": "critical",
+   "remedy": "Record a screen of the system against each Article 5 practice, with the reviewer and the reasoning, and set values.none_apply only if none applies."
+  },
+  {
+   "id": "eu.art6.classification",
+   "title": "Risk classification recorded and reasoned",
+   "reference": "Regulation (EU) 2024/1689, Art. 6 and Annex III",
+   "applies": "true",
+   "requires": "system.risk_class != \"unclassified\" and present(evidence.risk_classification)",
+   "evidence": [
+    "risk_classification"
+   ],
+   "max_age_days": 365,
+   "severity": "major",
+   "remedy": "Classify the system against Annex III and Article 6(3), write down the reasoning, and set system.risk_class."
+  },
+  {
+   "id": "eu.art9.risk-management",
+   "title": "Risk management system",
+   "reference": "Regulation (EU) 2024/1689, Art. 9",
+   "applies": "system.risk_class == \"high\" and system.role in [\"provider\", \"both\"]",
+   "requires": "present(evidence.risk_management) and evidence.risk_management.values.residual_risk_acceptable == true and evidence.risk_management.values.foreseeable_misuse_assessed == true",
+   "evidence": [
+    "risk_management"
+   ],
+   "max_age_days": 365,
+   "severity": "critical",
+   "remedy": "Keep a risk management process that covers foreseeable misuse, residual risk and its acceptance, and review it on a schedule."
+  },
+  {
+   "id": "eu.art10.data-governance",
+   "title": "Data and data governance",
+   "reference": "Regulation (EU) 2024/1689, Art. 10",
+   "applies": "system.risk_class == \"high\" and system.role in [\"provider\", \"both\"]",
+   "requires": "present(evidence.data_governance) and evidence.data_governance.values.provenance_documented == true and evidence.data_governance.values.representativeness_assessed == true and evidence.data_governance.values.bias_examined == true",
+   "evidence": [
+    "data_governance"
+   ],
+   "max_age_days": 730,
+   "severity": "critical",
+   "remedy": "Document where training, validation and test data came from, whether it represents the people affected, and how bias in it was examined."
+  },
+  {
+   "id": "eu.art10.bias-testing",
+   "title": "Bias examination with a result",
+   "reference": "Regulation (EU) 2024/1689, Art. 10(2)(f) and (g)",
+   "applies": "system.risk_class == \"high\" and system.role in [\"provider\", \"both\"]",
+   "requires": "present(evidence.bias_test) and evidence.bias_test.values.overall == \"pass\"",
+   "evidence": [
+    "bias_test"
+   ],
+   "max_age_days": 365,
+   "severity": "critical",
+   "remedy": "Run `python -m lex_machine bias` on predictions with the protected attribute and record the result. An inconclusive result does not pass."
+  },
+  {
+   "id": "eu.art11.technical-documentation",
+   "title": "Technical documentation (Annex IV)",
+   "reference": "Regulation (EU) 2024/1689, Art. 11 and Annex IV",
+   "applies": "system.risk_class == \"high\" and system.role in [\"provider\", \"both\"]",
+   "requires": "present(evidence.technical_documentation) and evidence.technical_documentation.values.annex_iv_complete == true",
+   "evidence": [
+    "technical_documentation"
+   ],
+   "max_age_days": 365,
+   "severity": "major",
+   "remedy": "Assemble the Annex IV documentation and keep it current with each release."
+  },
+  {
+   "id": "eu.art12.record-keeping",
+   "title": "Automatic logging, kept at least six months",
+   "reference": "Regulation (EU) 2024/1689, Arts. 12 and 19",
+   "applies": "system.risk_class == \"high\" and system.role in [\"provider\", \"both\"]",
+   "requires": "present(evidence.logging) and evidence.logging.values.automatic_logging == true and evidence.logging.values.retention_days >= 180",
+   "evidence": [
+    "logging"
+   ],
+   "max_age_days": 365,
+   "severity": "major",
+   "remedy": "Log events automatically over the system's life and retain the logs for at least 180 days."
+  },
+  {
+   "id": "eu.art13.instructions-for-use",
+   "title": "Instructions for use for deployers",
+   "reference": "Regulation (EU) 2024/1689, Art. 13",
+   "applies": "system.risk_class == \"high\" and system.role in [\"provider\", \"both\"]",
+   "requires": "present(evidence.transparency_instructions) and evidence.transparency_instructions.values.instructions_for_use == true",
+   "evidence": [
+    "transparency_instructions"
+   ],
+   "max_age_days": 365,
+   "severity": "major",
+   "remedy": "Provide deployers with instructions covering purpose, accuracy, limits, oversight needs and known risks."
+  },
+  {
+   "id": "eu.art14.human-oversight",
+   "title": "Human oversight",
+   "reference": "Regulation (EU) 2024/1689, Art. 14",
+   "applies": "system.risk_class == \"high\" and system.role in [\"provider\", \"both\"]",
+   "requires": "present(evidence.human_oversight) and evidence.human_oversight.values.oversight_measures == true and evidence.human_oversight.values.can_override == true",
+   "evidence": [
+    "human_oversight"
+   ],
+   "max_age_days": 365,
+   "severity": "critical",
+   "remedy": "Design and record the oversight measures, including how a person can intervene, override or stop the system."
+  },
+  {
+   "id": "eu.art15.accuracy-robustness",
+   "title": "Accuracy, robustness and cybersecurity",
+   "reference": "Regulation (EU) 2024/1689, Art. 15",
+   "applies": "system.risk_class == \"high\" and system.role in [\"provider\", \"both\"]",
+   "requires": "present(evidence.accuracy_robustness) and evidence.accuracy_robustness.values.accuracy_declared == true and evidence.accuracy_robustness.values.robustness_tested == true and evidence.accuracy_robustness.values.cybersecurity_tested == true",
+   "evidence": [
+    "accuracy_robustness"
+   ],
+   "max_age_days": 365,
+   "severity": "major",
+   "remedy": "Declare accuracy metrics and test robustness and cybersecurity against the declared levels."
+  },
+  {
+   "id": "eu.art17.quality-management",
+   "title": "Quality management system",
+   "reference": "Regulation (EU) 2024/1689, Art. 17",
+   "applies": "system.risk_class == \"high\" and system.role in [\"provider\", \"both\"]",
+   "requires": "present(evidence.quality_management) and evidence.quality_management.values.qms_in_place == true",
+   "evidence": [
+    "quality_management"
+   ],
+   "max_age_days": 730,
+   "severity": "major",
+   "remedy": "Put a documented quality management system in place that covers design, testing, data and post-market handling."
+  },
+  {
+   "id": "eu.art43.conformity-assessment",
+   "title": "Conformity assessment completed",
+   "reference": "Regulation (EU) 2024/1689, Art. 43",
+   "applies": "system.risk_class == \"high\" and system.role in [\"provider\", \"both\"]",
+   "requires": "present(evidence.conformity_assessment) and evidence.conformity_assessment.values.assessment_completed == true",
+   "evidence": [
+    "conformity_assessment"
+   ],
+   "max_age_days": 365,
+   "severity": "critical",
+   "remedy": "Complete the applicable conformity assessment procedure before placing the system on the market."
+  },
+  {
+   "id": "eu.art47.declaration-of-conformity",
+   "title": "EU declaration of conformity",
+   "reference": "Regulation (EU) 2024/1689, Art. 47",
+   "applies": "system.risk_class == \"high\" and system.role in [\"provider\", \"both\"]",
+   "requires": "present(evidence.conformity_assessment) and evidence.conformity_assessment.values.declaration_of_conformity == true",
+   "evidence": [
+    "conformity_assessment"
+   ],
+   "max_age_days": 365,
+   "severity": "major",
+   "remedy": "Draw up and keep the EU declaration of conformity."
+  },
+  {
+   "id": "eu.art49.registration",
+   "title": "Registration in the EU database",
+   "reference": "Regulation (EU) 2024/1689, Art. 49",
+   "applies": "system.risk_class == \"high\" and system.role in [\"provider\", \"both\"]",
+   "requires": "present(evidence.conformity_assessment) and evidence.conformity_assessment.values.registered_in_eu_database == true",
+   "evidence": [
+    "conformity_assessment"
+   ],
+   "max_age_days": 365,
+   "severity": "major",
+   "remedy": "Register the system in the EU database before it is placed on the market or put into service."
+  },
+  {
+   "id": "eu.art72.post-market-monitoring",
+   "title": "Post-market monitoring plan",
+   "reference": "Regulation (EU) 2024/1689, Art. 72",
+   "applies": "system.risk_class == \"high\" and system.role in [\"provider\", \"both\"]",
+   "requires": "present(evidence.post_market_monitoring) and evidence.post_market_monitoring.values.plan_in_place == true",
+   "evidence": [
+    "post_market_monitoring"
+   ],
+   "max_age_days": 365,
+   "severity": "major",
+   "remedy": "Establish a post-market monitoring system that collects and analyses performance data over the system's life."
+  },
+  {
+   "id": "eu.art73.serious-incident-reporting",
+   "title": "Serious incident reporting procedure",
+   "reference": "Regulation (EU) 2024/1689, Art. 73",
+   "applies": "system.risk_class == \"high\" and system.role in [\"provider\", \"both\"]",
+   "requires": "present(evidence.incident_reporting) and evidence.incident_reporting.values.procedure_in_place == true",
+   "evidence": [
+    "incident_reporting"
+   ],
+   "max_age_days": 365,
+   "severity": "major",
+   "remedy": "Write and test the procedure for reporting serious incidents to the market surveillance authority."
+  },
+  {
+   "id": "eu.art26.deployer-obligations",
+   "title": "Deployer obligations",
+   "reference": "Regulation (EU) 2024/1689, Art. 26",
+   "applies": "system.risk_class == \"high\" and system.role in [\"deployer\", \"both\"]",
+   "requires": "present(evidence.deployer_controls) and evidence.deployer_controls.values.uses_per_instructions == true and evidence.deployer_controls.values.oversight_assigned == true and evidence.deployer_controls.values.log_retention_days >= 180",
+   "evidence": [
+    "deployer_controls"
+   ],
+   "max_age_days": 365,
+   "severity": "major",
+   "remedy": "Use the system per its instructions, assign trained people to oversight, and keep the logs you control for at least 180 days."
+  },
+  {
+   "id": "eu.art27.fria",
+   "title": "Fundamental rights impact assessment",
+   "reference": "Regulation (EU) 2024/1689, Art. 27",
+   "applies": "system.risk_class == \"high\" and system.role in [\"deployer\", \"both\"] and system.fria_scope == true",
+   "requires": "present(evidence.fria) and evidence.fria.values.completed == true",
+   "evidence": [
+    "fria"
+   ],
+   "max_age_days": 730,
+   "severity": "major",
+   "remedy": "Complete a fundamental rights impact assessment before first use and update it when the facts change."
+  },
+  {
+   "id": "eu.art4.ai-literacy",
+   "title": "AI literacy of staff",
+   "reference": "Regulation (EU) 2024/1689, Art. 4",
+   "applies": "true",
+   "requires": "present(evidence.ai_literacy) and evidence.ai_literacy.values.training_delivered == true",
+   "evidence": [
+    "ai_literacy"
+   ],
+   "max_age_days": 365,
+   "severity": "minor",
+   "remedy": "Give the people who operate or use the system training suited to their role and record it."
+  },
+  {
+   "id": "eu.art50.interaction-disclosure",
+   "title": "People are told they are dealing with an AI",
+   "reference": "Regulation (EU) 2024/1689, Art. 50(1)",
+   "applies": "system.interacts_with_people == true",
+   "requires": "present(evidence.ai_disclosure) and evidence.ai_disclosure.values.disclosed == true",
+   "evidence": [
+    "ai_disclosure"
+   ],
+   "max_age_days": 365,
+   "severity": "major",
+   "remedy": "Tell people at the start that they are interacting with an AI system, unless it is obvious from the context."
+  },
+  {
+   "id": "eu.art50.synthetic-marking",
+   "title": "Synthetic content is marked machine-readably",
+   "reference": "Regulation (EU) 2024/1689, Art. 50(2)",
+   "applies": "system.generates_synthetic_content == true and system.role in [\"provider\", \"both\"]",
+   "requires": "present(evidence.synthetic_content_marking) and evidence.synthetic_content_marking.values.machine_readable_marking == true",
+   "evidence": [
+    "synthetic_content_marking"
+   ],
+   "max_age_days": 365,
+   "severity": "major",
+   "remedy": "Mark generated audio, image, video or text in a machine-readable format so it can be detected as artificial."
+  },
+  {
+   "id": "eu.art53.gpai-documentation",
+   "title": "General-purpose model documentation",
+   "reference": "Regulation (EU) 2024/1689, Art. 53(1)(a) and (b)",
+   "applies": "system.gpai == true and system.role in [\"provider\", \"both\"]",
+   "requires": "present(evidence.gpai_documentation) and evidence.gpai_documentation.values.technical_documentation == true and evidence.gpai_documentation.values.downstream_information == true",
+   "evidence": [
+    "gpai_documentation"
+   ],
+   "max_age_days": 365,
+   "severity": "critical",
+   "remedy": "Keep technical documentation for the AI Office and give downstream providers the information they need to comply."
+  },
+  {
+   "id": "eu.art53.gpai-copyright",
+   "title": "Copyright policy and training content summary",
+   "reference": "Regulation (EU) 2024/1689, Art. 53(1)(c) and (d)",
+   "applies": "system.gpai == true and system.role in [\"provider\", \"both\"]",
+   "requires": "present(evidence.gpai_copyright) and evidence.gpai_copyright.values.copyright_policy == true and evidence.gpai_copyright.values.training_summary_published == true",
+   "evidence": [
+    "gpai_copyright"
+   ],
+   "max_age_days": 365,
+   "severity": "major",
+   "remedy": "Adopt a policy to comply with EU copyright law and publish the summary of training content."
+  },
+  {
+   "id": "eu.art55.systemic-risk",
+   "title": "Systemic-risk model obligations",
+   "reference": "Regulation (EU) 2024/1689, Art. 55",
+   "applies": "system.gpai == true and system.systemic_risk == true and system.role in [\"provider\", \"both\"]",
+   "requires": "present(evidence.gpai_systemic_risk) and evidence.gpai_systemic_risk.values.model_evaluation == true and evidence.gpai_systemic_risk.values.adversarial_testing == true and evidence.gpai_systemic_risk.values.incident_tracking == true and evidence.gpai_systemic_risk.values.cybersecurity_protection == true",
+   "evidence": [
+    "gpai_systemic_risk"
+   ],
+   "max_age_days": 365,
+   "severity": "critical",
+   "remedy": "Evaluate the model, run adversarial testing, track and report serious incidents, and protect the model and its infrastructure."
+  }
+ ]
+}

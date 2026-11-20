@@ -1,0 +1,451 @@
+{
+ "as_of": "2026-11-15",
+ "evidence": {
+  "accuracy_robustness": {
+   "collected": "2026-09-14",
+   "values": {
+    "accuracy_declared": true,
+    "cybersecurity_tested": true,
+    "robustness_tested": true
+   }
+  },
+  "ai_disclosure": {
+   "collected": "2026-09-14",
+   "values": {
+    "disclosed": true
+   }
+  },
+  "ai_literacy": {
+   "collected": "2026-09-14",
+   "values": {
+    "training_delivered": true
+   }
+  },
+  "ai_policy": {
+   "collected": "2026-09-14",
+   "values": {
+    "approved": true
+   }
+  },
+  "automated_decision_safeguards": {
+   "collected": "2026-09-14",
+   "values": {
+    "can_contest": true,
+    "explanation_available": true,
+    "human_intervention": true
+   }
+  },
+  "bias_test": {
+   "artifacts": [
+    {
+     "path": "artifacts/triage_v2/predictions.csv",
+     "sha256": "69faac60ad3036339bcec88b74873897e3efd10f650ff10869dbb13c7ef80542"
+    }
+   ],
+   "collected": "2026-10-02",
+   "note": "python -m lex_machine bias artifacts/triage_v2/predictions.csv --group group --label label --pred pred",
+   "values": {
+    "alpha": 0.05,
+    "group_rates": {
+     "group_a": {
+      "fpr": 0.108238,
+      "n": 1500,
+      "selection_rate": 0.326,
+      "tpr": 0.824561
+     },
+     "group_b": {
+      "fpr": 0.129771,
+      "n": 1500,
+      "selection_rate": 0.340667,
+      "tpr": 0.829646
+     },
+     "group_c": {
+      "fpr": 0.132942,
+      "n": 1500,
+      "selection_rate": 0.354667,
+      "tpr": 0.830189
+     }
+    },
+    "groups": 3,
+    "max_gap": 0.1,
+    "metrics": {
+     "four_fifths": {
+      "verdict": "pass",
+      "worst_estimate": 0.919173,
+      "worst_high": 1.038301,
+      "worst_low": 0.813713,
+      "worst_pair": [
+       "group_a",
+       "group_c"
+      ]
+     },
+     "fpr_gap": {
+      "verdict": "pass",
+      "worst_estimate": -0.024705,
+      "worst_high": 0.009665,
+      "worst_low": -0.05923,
+      "worst_pair": [
+       "group_a",
+       "group_c"
+      ]
+     },
+     "selection_rate_gap": {
+      "verdict": "pass",
+      "worst_estimate": -0.028667,
+      "worst_high": 0.012741,
+      "worst_low": -0.069938,
+      "worst_pair": [
+       "group_a",
+       "group_c"
+      ]
+     },
+     "tpr_gap": {
+      "verdict": "pass",
+      "worst_estimate": -0.005627,
+      "worst_high": 0.053633,
+      "worst_low": -0.065236,
+      "worst_pair": [
+       "group_a",
+       "group_c"
+      ]
+     }
+    },
+    "min_group": 30,
+    "min_ratio": 0.8,
+    "overall": "pass",
+    "rows": 4500,
+    "smallest_group": 1500
+   }
+  },
+  "breach_procedure": {
+   "collected": "2026-09-14",
+   "values": {
+    "notify_authority_72h": true
+   }
+  },
+  "conformity_assessment": {
+   "collected": "2026-09-14",
+   "values": {
+    "assessment_completed": true,
+    "declaration_of_conformity": true,
+    "registered_in_eu_database": true
+   }
+  },
+  "context_documented": {
+   "collected": "2026-09-14",
+   "values": {
+    "intended_purpose_documented": true,
+    "users_identified": true
+   }
+  },
+  "data_governance": {
+   "artifacts": [
+    {
+     "path": "artifacts/triage_v2/data_governance.md",
+     "sha256": "2767a9bd30f79076d3fd3daf8f6aa7b6455ae22b78414ee4e898043028dc9aa5"
+    }
+   ],
+   "collected": "2026-09-14",
+   "values": {
+    "bias_examined": true,
+    "provenance_documented": true,
+    "representativeness_assessed": true
+   }
+  },
+  "data_minimisation": {
+   "collected": "2026-09-14",
+   "values": {
+    "reviewed": true
+   }
+  },
+  "decommissioning": {
+   "collected": "2026-09-14",
+   "values": {
+    "deactivation_procedure": true
+   }
+  },
+  "deployer_controls": {
+   "collected": "2026-09-14",
+   "values": {
+    "log_retention_days": 365,
+    "oversight_assigned": true,
+    "uses_per_instructions": true
+   }
+  },
+  "dpia": {
+   "artifacts": [
+    {
+     "path": "artifacts/triage_v2/dpia.md",
+     "sha256": "cb00156a660fba92ab2266ea21513212cf330e218eb358ee5c1710e7ee5e2a40"
+    }
+   ],
+   "collected": "2026-09-14",
+   "values": {
+    "completed": true,
+    "residual_risk_accepted": true
+   }
+  },
+  "dsr_process": {
+   "collected": "2026-09-14",
+   "values": {
+    "operational": true
+   }
+  },
+  "explainability": {
+   "collected": "2026-09-14",
+   "values": {
+    "documented": true
+   }
+  },
+  "fria": {
+   "collected": "2026-09-14",
+   "values": {
+    "completed": true
+   }
+  },
+  "governance_policy": {
+   "collected": "2026-09-14",
+   "values": {
+    "legal_requirements_mapped": true
+   }
+  },
+  "gpai_copyright": {
+   "collected": "2026-09-14",
+   "values": {
+    "copyright_policy": true,
+    "training_summary_published": true
+   }
+  },
+  "gpai_documentation": {
+   "collected": "2026-09-14",
+   "values": {
+    "downstream_information": true,
+    "technical_documentation": true
+   }
+  },
+  "gpai_systemic_risk": {
+   "collected": "2026-09-14",
+   "values": {
+    "adversarial_testing": true,
+    "cybersecurity_protection": true,
+    "incident_tracking": true,
+    "model_evaluation": true
+   }
+  },
+  "human_oversight": {
+   "collected": "2026-09-14",
+   "values": {
+    "can_override": true,
+    "oversight_measures": true
+   }
+  },
+  "impact_assessment": {
+   "collected": "2026-09-14",
+   "values": {
+    "completed": true
+   }
+  },
+  "incident_reporting": {
+   "collected": "2026-09-14",
+   "values": {
+    "procedure_in_place": true
+   }
+  },
+  "internal_audit": {
+   "collected": "2026-09-14",
+   "values": {
+    "completed": true
+   }
+  },
+  "lawful_basis": {
+   "collected": "2026-09-14",
+   "values": {
+    "basis": "legitimate_interests"
+   }
+  },
+  "lifecycle_process": {
+   "collected": "2026-09-14",
+   "values": {
+    "defined": true
+   }
+  },
+  "logging": {
+   "collected": "2026-09-14",
+   "values": {
+    "automatic_logging": true,
+    "retention_days": 365
+   }
+  },
+  "measurement_plan": {
+   "collected": "2026-09-14",
+   "values": {
+    "metrics_defined": true
+   }
+  },
+  "post_market_monitoring": {
+   "collected": "2026-09-14",
+   "values": {
+    "plan_in_place": true
+   }
+  },
+  "privacy_by_design": {
+   "collected": "2026-09-14",
+   "values": {
+    "assessed": true
+   }
+  },
+  "privacy_notice": {
+   "collected": "2026-09-14",
+   "values": {
+    "published": true
+   }
+  },
+  "privacy_risk": {
+   "collected": "2026-09-14",
+   "values": {
+    "assessed": true
+   }
+  },
+  "prohibited_practices_screen": {
+   "collected": "2026-09-14",
+   "values": {
+    "none_apply": true
+   }
+  },
+  "quality_management": {
+   "collected": "2026-09-14",
+   "values": {
+    "qms_in_place": true
+   }
+  },
+  "resource_documentation": {
+   "collected": "2026-09-14",
+   "values": {
+    "documented": true
+   }
+  },
+  "retention_schedule": {
+   "collected": "2026-09-14",
+   "values": {
+    "schedule_defined": true
+   }
+  },
+  "risk_classification": {
+   "collected": "2026-09-14",
+   "values": {}
+  },
+  "risk_management": {
+   "artifacts": [
+    {
+     "path": "artifacts/triage_v2/risk_management.md",
+     "sha256": "c4b3b0606f53e2e33e49f151a75193a135fb40ae620d5ce4433f7f7d234187be"
+    }
+   ],
+   "collected": "2026-09-14",
+   "values": {
+    "foreseeable_misuse_assessed": true,
+    "residual_risk_acceptable": true
+   }
+  },
+  "risk_treatment": {
+   "collected": "2026-09-14",
+   "values": {
+    "treatment_documented": true
+   }
+  },
+  "roles_responsibilities": {
+   "collected": "2026-09-14",
+   "values": {
+    "escalation_path": true,
+    "owner_named": true
+   }
+  },
+  "ropa": {
+   "collected": "2026-09-14",
+   "values": {
+    "maintained": true
+   }
+  },
+  "safety_evaluation": {
+   "collected": "2026-09-14",
+   "values": {
+    "completed": true
+   }
+  },
+  "security_evaluation": {
+   "collected": "2026-09-14",
+   "values": {
+    "completed": true
+   }
+  },
+  "security_measures": {
+   "collected": "2026-09-14",
+   "values": {
+    "documented": true
+   }
+  },
+  "synthetic_content_marking": {
+   "collected": "2026-09-14",
+   "values": {
+    "machine_readable_marking": true
+   }
+  },
+  "technical_documentation": {
+   "artifacts": [
+    {
+     "path": "artifacts/triage_v2/technical_documentation.md",
+     "sha256": "33a2adeda55d2db34ab9621172a7fa1b305d0f6ce5cac9b4c453f1c3497e4546"
+    }
+   ],
+   "collected": "2026-09-14",
+   "values": {
+    "annex_iv_complete": true
+   }
+  },
+  "third_party_risk": {
+   "collected": "2026-09-14",
+   "values": {
+    "assessed": true
+   }
+  },
+  "transparency_instructions": {
+   "collected": "2026-09-14",
+   "values": {
+    "instructions_for_use": true
+   }
+  },
+  "use_policy": {
+   "collected": "2026-09-14",
+   "values": {
+    "responsible_use_defined": true
+   }
+  }
+ },
+ "gates": {
+  "max_stale": 0,
+  "min_readiness": 1,
+  "no_critical_gaps": true,
+  "no_tampered": true,
+  "no_undetermined": true
+ },
+ "packs": [
+  "eu-ai-act",
+  "nist-ai-rmf",
+  "gdpr",
+  "iso-42001"
+ ],
+ "system": {
+  "automated_decisions": true,
+  "fria_scope": true,
+  "generates_synthetic_content": false,
+  "gpai": false,
+  "intended_purpose": "Prioritise incoming patient messages for clinical staff",
+  "interacts_with_people": true,
+  "name": "triage-v2",
+  "personal_data": true,
+  "risk_class": "high",
+  "role": "both",
+  "systemic_risk": false,
+  "version": "2.3.1"
+ }
+}

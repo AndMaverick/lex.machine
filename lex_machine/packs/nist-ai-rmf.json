@@ -1,0 +1,217 @@
+{
+ "name": "nist-ai-rmf",
+ "title": "NIST AI Risk Management Framework readiness",
+ "version": "2026.11",
+ "source": "NIST AI RMF 1.0 (NIST AI 100-1)",
+ "note": "Control mappings are the author's reading of each provision, written to make engineering readiness checkable. They are not legal advice and do not decide what a regulation requires of you. Check the text and your counsel, and edit this file to match their view.",
+ "controls": [
+  {
+   "id": "nist.govern-1.1",
+   "title": "Legal and regulatory requirements understood",
+   "reference": "NIST AI RMF 1.0, GOVERN 1.1",
+   "applies": "true",
+   "requires": "present(evidence.governance_policy) and evidence.governance_policy.values.legal_requirements_mapped == true",
+   "evidence": [
+    "governance_policy"
+   ],
+   "max_age_days": 365,
+   "severity": "major",
+   "remedy": "Map the laws and regulations that apply to the system and keep the mapping managed."
+  },
+  {
+   "id": "nist.govern-2.1",
+   "title": "Roles and responsibilities documented",
+   "reference": "NIST AI RMF 1.0, GOVERN 2.1",
+   "applies": "true",
+   "requires": "present(evidence.roles_responsibilities) and evidence.roles_responsibilities.values.owner_named == true and evidence.roles_responsibilities.values.escalation_path == true",
+   "evidence": [
+    "roles_responsibilities"
+   ],
+   "max_age_days": 365,
+   "severity": "major",
+   "remedy": "Name an accountable owner and write down who decides, who is told and how a problem escalates."
+  },
+  {
+   "id": "nist.govern-6.1",
+   "title": "Third-party and supply-chain risk handled",
+   "reference": "NIST AI RMF 1.0, GOVERN 6.1",
+   "applies": "true",
+   "requires": "present(evidence.third_party_risk) and evidence.third_party_risk.values.assessed == true",
+   "evidence": [
+    "third_party_risk"
+   ],
+   "max_age_days": 365,
+   "severity": "minor",
+   "remedy": "Assess the risks of the third-party models, data and services the system depends on."
+  },
+  {
+   "id": "nist.map-1.1",
+   "title": "Intended purpose and context documented",
+   "reference": "NIST AI RMF 1.0, MAP 1.1",
+   "applies": "true",
+   "requires": "present(evidence.context_documented) and evidence.context_documented.values.intended_purpose_documented == true and evidence.context_documented.values.users_identified == true",
+   "evidence": [
+    "context_documented"
+   ],
+   "max_age_days": 365,
+   "severity": "major",
+   "remedy": "Write down what the system is for, who uses it, who it affects and where it is deployed."
+  },
+  {
+   "id": "nist.map-5.1",
+   "title": "Impacts identified by likelihood and magnitude",
+   "reference": "NIST AI RMF 1.0, MAP 5.1",
+   "applies": "true",
+   "requires": "present(evidence.impact_assessment) and evidence.impact_assessment.values.completed == true",
+   "evidence": [
+    "impact_assessment"
+   ],
+   "max_age_days": 365,
+   "severity": "major",
+   "remedy": "Identify the harms and benefits to people and organisations and rate their likelihood and magnitude."
+  },
+  {
+   "id": "nist.measure-1.1",
+   "title": "Metrics selected for the risks that matter",
+   "reference": "NIST AI RMF 1.0, MEASURE 1.1",
+   "applies": "true",
+   "requires": "present(evidence.measurement_plan) and evidence.measurement_plan.values.metrics_defined == true",
+   "evidence": [
+    "measurement_plan"
+   ],
+   "max_age_days": 365,
+   "severity": "minor",
+   "remedy": "Choose the metrics for each identified risk and say which risks are not measured and why."
+  },
+  {
+   "id": "nist.measure-2.5",
+   "title": "Validity and reliability demonstrated",
+   "reference": "NIST AI RMF 1.0, MEASURE 2.5",
+   "applies": "true",
+   "requires": "present(evidence.accuracy_robustness) and evidence.accuracy_robustness.values.accuracy_declared == true and evidence.accuracy_robustness.values.robustness_tested == true",
+   "evidence": [
+    "accuracy_robustness"
+   ],
+   "max_age_days": 365,
+   "severity": "major",
+   "remedy": "Test the system under conditions like deployment and record where it is valid and where it is not."
+  },
+  {
+   "id": "nist.measure-2.6",
+   "title": "Safety evaluated",
+   "reference": "NIST AI RMF 1.0, MEASURE 2.6",
+   "applies": "true",
+   "requires": "present(evidence.safety_evaluation) and evidence.safety_evaluation.values.completed == true",
+   "evidence": [
+    "safety_evaluation"
+   ],
+   "max_age_days": 365,
+   "severity": "major",
+   "remedy": "Evaluate the system for safety risks before deployment and on a schedule after."
+  },
+  {
+   "id": "nist.measure-2.7",
+   "title": "Security and resilience evaluated",
+   "reference": "NIST AI RMF 1.0, MEASURE 2.7",
+   "applies": "true",
+   "requires": "present(evidence.security_evaluation) and evidence.security_evaluation.values.completed == true",
+   "evidence": [
+    "security_evaluation"
+   ],
+   "max_age_days": 365,
+   "severity": "major",
+   "remedy": "Test the system for security and resilience, including adversarial inputs."
+  },
+  {
+   "id": "nist.measure-2.9",
+   "title": "Model explained and outputs interpreted",
+   "reference": "NIST AI RMF 1.0, MEASURE 2.9",
+   "applies": "true",
+   "requires": "present(evidence.explainability) and evidence.explainability.values.documented == true",
+   "evidence": [
+    "explainability"
+   ],
+   "max_age_days": 365,
+   "severity": "minor",
+   "remedy": "Document how the model's outputs are explained and interpreted in its context."
+  },
+  {
+   "id": "nist.measure-2.10",
+   "title": "Privacy risk examined",
+   "reference": "NIST AI RMF 1.0, MEASURE 2.10",
+   "applies": "true",
+   "requires": "present(evidence.privacy_risk) and evidence.privacy_risk.values.assessed == true",
+   "evidence": [
+    "privacy_risk"
+   ],
+   "max_age_days": 365,
+   "severity": "major",
+   "remedy": "Examine the privacy risk of the system and record what was found and done."
+  },
+  {
+   "id": "nist.measure-2.11",
+   "title": "Fairness and bias evaluated",
+   "reference": "NIST AI RMF 1.0, MEASURE 2.11",
+   "applies": "true",
+   "requires": "present(evidence.bias_test) and evidence.bias_test.values.overall == \"pass\"",
+   "evidence": [
+    "bias_test"
+   ],
+   "max_age_days": 365,
+   "severity": "critical",
+   "remedy": "Evaluate fairness and bias with a documented method and record the result. An inconclusive result does not pass."
+  },
+  {
+   "id": "nist.manage-1.1",
+   "title": "Decision to deploy is documented against purpose",
+   "reference": "NIST AI RMF 1.0, MANAGE 1.1",
+   "applies": "true",
+   "requires": "present(evidence.risk_treatment) and evidence.risk_treatment.values.treatment_documented == true",
+   "evidence": [
+    "risk_treatment"
+   ],
+   "max_age_days": 365,
+   "severity": "major",
+   "remedy": "Record whether the system achieves its intended purpose and the decision to proceed, with the risks accepted."
+  },
+  {
+   "id": "nist.manage-2.4",
+   "title": "Mechanisms to deactivate the system",
+   "reference": "NIST AI RMF 1.0, MANAGE 2.4",
+   "applies": "true",
+   "requires": "present(evidence.decommissioning) and evidence.decommissioning.values.deactivation_procedure == true",
+   "evidence": [
+    "decommissioning"
+   ],
+   "max_age_days": 365,
+   "severity": "minor",
+   "remedy": "Write and test the procedure to supersede or deactivate the system when it behaves outside its intended use."
+  },
+  {
+   "id": "nist.manage-4.1",
+   "title": "Post-deployment monitoring",
+   "reference": "NIST AI RMF 1.0, MANAGE 4.1",
+   "applies": "true",
+   "requires": "present(evidence.post_market_monitoring) and evidence.post_market_monitoring.values.plan_in_place == true",
+   "evidence": [
+    "post_market_monitoring"
+   ],
+   "max_age_days": 365,
+   "severity": "major",
+   "remedy": "Plan and run monitoring after deployment, with appeal and override mechanisms and a way to feed findings back."
+  },
+  {
+   "id": "nist.manage-4.3",
+   "title": "Incidents tracked and communicated",
+   "reference": "NIST AI RMF 1.0, MANAGE 4.3",
+   "applies": "true",
+   "requires": "present(evidence.incident_reporting) and evidence.incident_reporting.values.procedure_in_place == true",
+   "evidence": [
+    "incident_reporting"
+   ],
+   "max_age_days": 365,
+   "severity": "major",
+   "remedy": "Track incidents and errors, and communicate them to the affected parties and responders."
+  }
+ ]
+}
